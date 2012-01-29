@@ -3,31 +3,41 @@ class UsersController < ApplicationController
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user, :only => :destroy
   
-   def index
-    @users = User.all
-    @title = "Vsi"
-  end
+   # def index
+    # @users = User.all
+    # @title = "Vsi"
+  # end
   def show
     @user = User.find(params[:id])
     @title = @user.name
   end
+  
   def new
     @user = User.new
     @title = "Prijava"
   end
 
   def create
+    # raise params[:user].inspect
     @user = User.new(params[:user])
-    
     if @user.save
       flash[:success] = "Uspesno ste se registrirali"
-      redirect_to @user
+     redirect_to @user
     else
-      flash[:error] = "Napaka pri registraciji"
-      render 'new'
-
+    @title = "Registracija"
+    render.new
     end
-  end
+    # @user = User.new(params[:user])
+#     
+    # if @user.save
+      # flash[:success] = "Uspesno ste se registrirali"
+      # redirect_to @user
+    # else
+      # flash[:error] = "Napaka pri registraciji"
+      # render 'new'
+# 
+    # end
+  # end
 
  
   def edit
@@ -72,5 +82,5 @@ class UsersController < ApplicationController
        redirect_to root_path
     end
   end
- 
+ end
 end
