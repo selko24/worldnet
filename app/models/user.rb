@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessor :password
+  attr_accessor :password, :name, :email
   attr_accessible :name, :surname, :email, :password, :password_confirmation
 
   has_many :posts
@@ -15,6 +15,15 @@ class User < ActiveRecord::Base
                        :confirmation => true
 
   before_save :convert_password
+  
+  def initialize(attributes = {})
+    @name = attributes[:name]
+    @email = attributes[:email]
+  end
+  
+  def formatted_email
+    "#{@name} <#{@email}>"
+  end
   
   def self.authenticate(email, pass)
     user = find_by_email(email)

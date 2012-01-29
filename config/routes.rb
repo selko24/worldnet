@@ -1,6 +1,12 @@
 Digg::Application.routes.draw do
   
  
+  get "users/new"
+
+  get "pages/home"
+
+  get "pages/contact"
+
   get "posts/create"
 
   get "posts/destroy"
@@ -10,13 +16,15 @@ Digg::Application.routes.draw do
   resources :posts, :only => [:create, :destroy]
   resources :users
   
+  root :to => 'pages#home'
+  
   match '/login', :to => 'sessions#new'
   match '/logout', :to => 'sessions#destroy'
   
   match '/registration', :to => 'users#new'
   match '/contact', :to => 'pages#contact'
   match '/about', :to => 'pages#about' 
-  root :to => 'pages#home'
+  
 
   
   

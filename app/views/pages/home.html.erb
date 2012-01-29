@@ -1,15 +1,6 @@
-<h1>Pridruži se skupnosti WorldNet</h1>
-<p>Če še niste član naše strani,lahko kliknete spodaj na gumb!</p>
-
-<% if signed_in? %>
-
-<!-- prikaži formo za vnos postov -->
-<%= render 'shared/post_form'%>
-<% else %>
-
-<%= link_to "Registriraj se!", registration_path, :class => "signup_button round" %>
-<% end %>
-
-<!-- Izpis vseh postov -->
-
-<%= render 'shared/all_posts'%>
+<h1>World-Net</h1>
+<p>
+	Če še niste član našega socialnega omrežja,to lahko storite s klikom na spodnji gumb.  
+</p>
+ <%= link_to "Registriraj se!", registration_path, :class => "signup_button round" %>
+ 
