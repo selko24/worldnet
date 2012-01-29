@@ -12,10 +12,8 @@ class UsersController < ApplicationController
     @title = @user.name
   end
   def new
-    @title = "Prijava"
-
     @user = User.new
-
+    @title = "Prijava"
   end
 
   def create
