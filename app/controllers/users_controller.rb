@@ -7,7 +7,11 @@ class UsersController < ApplicationController
     @users = User.all
     @title = "Vsi"
   end
-  
+   def show
+    @user = User.find(params[:id])
+    @title = ""
+  end
+
   def new
     @title = "Prijava"
 
@@ -28,11 +32,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find(params[:id])
-    @title = ""
-  end
-
+ 
   def edit
     @user = User.find(params[:id])
   end
