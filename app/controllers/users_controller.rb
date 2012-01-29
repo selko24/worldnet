@@ -7,11 +7,10 @@ class UsersController < ApplicationController
     @users = User.all
     @title = "Vsi"
   end
-   def show
+  def show
     @user = User.find(params[:id])
-    @title = ""
+    @title = @user.name
   end
-
   def new
     @title = "Prijava"
 
