@@ -1,0 +1,12 @@
+<%= @user.name %>
+<br />
+<%= @user.surname %>
+<br />
+<%= @user.email %>
+<%= @user %>
+<br />
+<br />
+<br />
+<%= link_to "Izbriši", @user, :method => :delete,
+:confirm => "A si ziher?"
+%> 

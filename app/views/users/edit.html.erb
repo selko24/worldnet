@@ -1,0 +1,8 @@
+<h1>Posodablanje</h1>
+
+<%= form_for(@user) do |f| %>
+	<%= render 'form', :f => f %>
+	<div class="akcija">
+	<%= f.submit "Posodobi" %>
+	</div>
+<% end %>

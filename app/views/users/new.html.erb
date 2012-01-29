@@ -1,0 +1,7 @@
+<h1>Registracija</h1>
+<%= form_for(@user) do |f| %>
+<%= render 'form', :f => f %>
+	<div class="akcija">
+	<%= f.submit "Registriraj" %>
+	</div>
+<% end %>

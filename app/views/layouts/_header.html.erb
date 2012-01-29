@@ -1,0 +1,22 @@
+<header>
+	<nav class="round">
+		
+		<ul>
+			
+			
+			
+			<% if signed_in? %>
+			<li><%= link_to "Domov" , root_path %></li>
+			
+			<li><%= link_to "Uporabniki", users_path %></li>
+			<li><%= link_to "Odjava", logout_path %></li>
+			<li>Pozdravljeni <%= whois %></li>
+			<% else %>
+			<li><%= link_to "Registracija", registration_path %></li>
+			
+			<li><%= link_to "Prijava", login_path %></li>
+			<% end %>
+			
+		</ul>
+			</nav>
+	</header>

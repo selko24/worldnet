@@ -1,0 +1,18 @@
+<h1>Prijava</h1>
+
+<%= form_for(:sessions, :url => session_path) do |f| %>
+	
+	<div class="polje">
+	<%= f.label :email, "e-pošta" %><br />
+	<%= f.text_field :email %>
+	</div>
+	<div class="polje">
+	<%= f.label :password, "Geslo" %><br />
+	<%= f.password_field :password %>
+	</div>
+	
+	<div class="akcija">
+	<%= f.submit "Prijavi" %>
+	</div>
+<% end %>
+<p> Ste novi? <%= link_to 'Registracija', registration_path %></p>

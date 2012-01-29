@@ -1,0 +1,17 @@
+<%= form_for(@post) do |f| %>
+	<div class="polje">
+	<%= f.label :title, "Naslov" %><br />
+	<%= f.text_field :title %>
+	</div>
+	<div class="polje">
+	<%= f.label :url, "Url" %><br />
+	<%= f.text_field :url %>
+	</div>
+	<div class="polje">
+	<%= f.label :content, "Vsebina" %><br />
+	<%= f.text_area :content %>
+	</div>
+	<div class="akcija">
+	<%= f.submit "Oddaj" %>
+	</div>
+<% end %>
