@@ -1,20 +1,20 @@
 Digg::Application.routes.draw do
   
- 
-  get "users/new"
-
-  get "pages/home"
-
-  get "pages/contact"
+ resources :sessions, :only => [:new, :create, :destroy]
+  resources :posts, :only => [:create, :destroy]
+  resources :users
+  
+  # get "users/new"
+# 
+  # get "pages/home"
+# 
+  # get "pages/contact"
 
   get "posts/create"
 
   get "posts/destroy"
 
   # get "users/new"
-  resources :sessions, :only => [:new, :create, :destroy]
-  resources :posts, :only => [:create, :destroy]
-  resources :users
   
   root :to => 'pages#home'
   
