@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
                        :length => { :within => 6..30 },
                        :confirmation => true
 
-  before_save :convert_password
+  before_save :encrypt_password
   
   def initialize(attributes = {})
     @name = attributes[:name]
@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
     if user.nil?
       nil
     else
-      if user.hash_password == encrypt(pass)
+      if user.encrypted_password == encrypt(pass)
       user
       else
         nil
@@ -42,15 +42,31 @@ class User < ActiveRecord::Base
     end
   end
 
+def has_password?(submitted_password)
+  encrypted_password == encrypt(submitted_password)
+end
+
+class << self
+
+def authenticate(email, submitted_password)
+  user = find_by_email(email)
+  return nil if user.nil?
+  return user if user.has_password?(submitted_password)
+end
+end
   private
-  def convert_password
-    self.hash_password = encrypt(password)
+  def encrypt_password
+    self.salt = make_salt if new_record?
+    self.encrypted_password = encrypt(password)
   end
 
-  def self.encrypt(string)
+  def encrypt(string)
+    secure_hash("#{salt}--#{string}")
+  end
+  def secure_hash(string)
     Digest::SHA2.hexdigest(string)
   end
-  def encrypt(string)
-    Digest::SHA2.hexdigest(string)
+  def make_salt
+    secure_hash("#{Time.now.utc}--#{password}")
   end
 end
