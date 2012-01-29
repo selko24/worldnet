@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessor :password, :name, :email
+  attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
 
   has_many :posts
@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
                     :uniqueness => { :case_sensitive => false }
 
   validates :password, :presence => true,
-                       :length => { :within => 6..40 },
+                       :length => { :within => 6..30 },
                        :confirmation => true
 
   before_save :convert_password
